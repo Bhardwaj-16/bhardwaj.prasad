@@ -6,7 +6,7 @@
   --primary: rgb(234, 129, 0);
 }
 
-.neue-flat {
+.neu-flat {
   background: var(--panel-bg);
   box-shadow: var(--shadow);
   border-radius: 1rem;
