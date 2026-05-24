@@ -35,13 +35,12 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" ref={containerRef} className="py-32 px-6 md:px-16 bg-black text-white relative min-h-[300vh]">
-      <div className="sticky top-32 max-w-7xl mx-auto w-full">
+    <section id="projects" ref={containerRef} className="py-32 px-6 md:px-16 bg-black text-white relative">
+      <div className="max-w-7xl mx-auto w-full">
         <SectionHeading title="THINGS I'VE BUILT." />
 
-        <div className="relative mt-24 h-[600px] w-full max-w-5xl mx-auto">
+        <div className="mt-24 w-full max-w-5xl mx-auto">
           {projects.map((proj, idx) => {
-            const isLast = idx === projects.length - 1;
             const targetScale = 1 - ((projects.length - idx) * 0.05);
             return (
               <Card
@@ -64,11 +63,12 @@ function Card({ i, project, progress, range, targetScale }: any) {
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <motion.div
-      style={{ scale, top: `calc(10vh + ${i * 40}px)` }}
-      className="absolute w-full h-[400px] md:h-[500px] bg-gray-900 rounded-[3rem] border border-gray-800 p-8 md:p-16 shadow-2xl flex flex-col justify-between transform-origin-top"
-    >
-      <div>
+    <div className="h-screen flex items-center justify-center sticky top-0">
+      <motion.div
+        style={{ scale, top: `calc(10vh + ${i * 40}px)` }}
+        className="relative w-full h-[400px] md:h-[500px] bg-gray-900 rounded-[3rem] border border-gray-800 p-8 md:p-16 shadow-2xl flex flex-col justify-between origin-top"
+      >
+        <div>
         <div className="flex justify-between items-center mb-8">
           <span className="text-4xl md:text-6xl font-black text-orange-500">{project.num}</span>
           <span className="text-sm md:text-base font-bold tracking-widest text-gray-400">{project.type}</span>
@@ -89,5 +89,6 @@ function Card({ i, project, progress, range, targetScale }: any) {
         </a>
       </div>
     </motion.div>
+    </div>
   );
 }
