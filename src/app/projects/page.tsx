@@ -10,7 +10,7 @@ interface Repo {
 
 async function getRepos() {
   const res = await fetch('https://api.github.com/users/bhardwaj-16/repos', {
-    next: { revalidate: 43200 }, // 12 hours
+    next: { revalidate: 3600 }, // 1 hour
   });
   if (!res.ok) {
     throw new Error('Failed to fetch repos');
