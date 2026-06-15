@@ -8,7 +8,8 @@ export default function Navbar() {
       <div className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wider text-gray-300">
         <Link href="#about" className="hover:text-white transition-colors">ABOUT</Link>
         <Link href="#ai-mind" className="hover:text-white transition-colors">AI</Link>
-        <Link href="#projects" className="hover:text-white transition-colors">PROJECTS</Link>
+        <Link href="#projects" className="hover:text-white transition-colors">STARTUP PRODUCTS</Link>
+        <Link href="/projects" className="hover:text-white transition-colors">PROJECTS</Link>
         <Link href="#contact" className="hover:text-white transition-colors">CONTACT</Link>
       </div>
     </nav>
