@@ -10,7 +10,7 @@ interface Repo {
 
 async function getRepos() {
   const res = await fetch('https://api.github.com/users/bhardwaj-16/repos', {
-    cache: 'no-store', // Real-time fetching
+    next: { revalidate: 60 }, // 1 minute
   });
   if (!res.ok) {
     throw new Error('Failed to fetch repos');
