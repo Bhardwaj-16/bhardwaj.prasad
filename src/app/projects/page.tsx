@@ -67,6 +67,7 @@ const renderRepoCard = (repo: Repo) => {
       </div>
     </a>
   );
+};
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-gray-800">
