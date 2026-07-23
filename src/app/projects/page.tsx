@@ -24,21 +24,40 @@ export default async function ProjectsPage() {
   const pinnedRepos = repos.filter(repo => repo.name.toLowerCase().includes('origin'));
   const otherRepos = repos.filter(repo => !repo.name.toLowerCase().includes('origin'));
 
-  const renderRepoCard = (repo: Repo) => (
-    <a 
-      href={repo.html_url} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      key={repo.id} 
-      className="block group"
-    >
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 h-full transition-all duration-300 hover:border-gray-600 hover:bg-gray-800/50 hover:-translate-y-1">
-        <h2 className="text-xl font-bold text-gray-100 group-hover:text-white transition-colors mb-3 truncate">
-          {repo.name}
-        </h2>
-        <p className="text-sm text-gray-400 line-clamp-3 mb-4">
-          {repo.description || 'No description available for this project.'}
-        </p>
+const renderRepoCard = (repo: Repo) => {
+    let cleanDescription = repo.description;
+    let tag = null;
+    
+    if (repo.description) {
+      const match = repo.description.match(/\[(.*?)\]/);
+      if (match) {
+        tag = match[1];
+        cleanDescription = repo.description.replace(match[0], '').trim();
+      }
+    }
+
+    return (
+      <a 
+        href={repo.html_url} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        key={repo.id} 
+        className="block group"
+      >
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 h-full transition-all duration-300 hover:border-gray-600 hover:bg-gray-800/50 hover:-translate-y-1 flex flex-col">
+          <div className="flex items-center flex-wrap gap-3 mb-3">
+            <h2 className="text-xl font-bold text-gray-100 group-hover:text-white transition-colors truncate">
+              {repo.name}
+            </h2>
+            {tag && (
+              <span className="px-2 py-0.5 text-xs font-medium tracking-wide text-orange-400 border border-orange-900 rounded bg-orange-950/30 whitespace-nowrap">
+                {tag.toUpperCase()}
+              </span>
+            )}
+          </div>
+          <p className="text-sm text-gray-400 line-clamp-3 mb-4">
+            {cleanDescription || 'No description available for this project.'}
+          </p>
         <div className="text-xs font-medium tracking-widest text-gray-500 uppercase mt-auto pt-4 flex justify-between items-center">
           <span>View on GitHub</span>
           <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
